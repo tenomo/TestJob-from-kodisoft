@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CubeBehaviourScript : MonoBehaviour , ICubeBehaviourScript
+public class CubeBehaviour : MonoBehaviour , ICubeBehaviour
 {
    public float MetamorphosesSpeed { get; set; }
-
+    
     private Transform cachTransform;
 
     private void Start ()
@@ -47,9 +47,15 @@ public class CubeBehaviourScript : MonoBehaviour , ICubeBehaviourScript
     }
 }
 
-public interface ICubeBehaviourScript
+public interface ICubeBehaviour
 {
     float MetamorphosesSpeed { get; set; }
     void Expansion(float Height);
     void Constriction();
+}
+
+public struct Point
+{
+    public Vector3 PositionInFieldMatrix { get; set; }
+    public int 
 }

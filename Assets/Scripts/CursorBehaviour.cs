@@ -17,12 +17,12 @@ public class CursorBehaviour : MonoBehaviour, ICursorBehaviour
     private float maxHeight;
     public float MaxHeight { get { return maxHeight; } set { maxHeight = value; } }
 
-    private FieldObjectsBuilder fieldObjectsBuilder;
+    private FieldObjects fieldObjectsBuilder;
     public GameObject GOFieldObjectsBuilder;
 
     void Start()
     {
-        fieldObjectsBuilder = GOFieldObjectsBuilder.GetComponent<FieldObjectsBuilder>();
+        fieldObjectsBuilder = GOFieldObjectsBuilder.GetComponent<FieldObjects>();
     }
 
     public Dictionary<Vector3, float> GetRegionImpacts(Vector3 pos)
@@ -37,10 +37,10 @@ public class CursorBehaviour : MonoBehaviour, ICursorBehaviour
         {
             for (int j = 0; j < SizeRegion.x; j++)
             {
-                if (fieldObjectsBuilder.Filed.ContainsKey(tmpPos))
-                {
-                    RegionImpacts.Add(tmpPos, GetPercentageHeight(pos, tmpPos));
-                }
+                //if (fieldObjectsBuilder.Filed.ContainsKey(tmpPos))
+                //{
+                //    RegionImpacts.Add(tmpPos, GetPercentageHeight(pos, tmpPos));
+                //}
                 tmpPos.x++;
             }
             tmpPos.x = startPosX;
@@ -67,10 +67,10 @@ public class CursorBehaviour : MonoBehaviour, ICursorBehaviour
     {
         foreach (KeyValuePair<Vector3, float> item in GetRegionImpacts(Position))
         {
-            if (fieldObjectsBuilder.Filed.ContainsKey(item.Key))
-            {
-                fieldObjectsBuilder.Filed[item.Key].Expansion(item.Value);
-            }
+            //if (fieldObjectsBuilder.Filed.ContainsKey(item.Key))
+            //{
+            //    fieldObjectsBuilder.Filed[item.Key].Expansion(item.Value);
+            //}
         }
     }
 
@@ -79,10 +79,10 @@ public class CursorBehaviour : MonoBehaviour, ICursorBehaviour
     { 
         foreach (KeyValuePair<Vector3, float> item in GetRegionImpacts(Position))
         {
-            if (fieldObjectsBuilder.Filed.ContainsKey(item.Key))
-            {
-                fieldObjectsBuilder.Filed[item.Key].Constriction();
-            }
+            //if (fieldObjectsBuilder.Filed.ContainsKey(item.Key))
+            //{
+            //    fieldObjectsBuilder.Filed[item.Key].Constriction();
+            //}
         }
     }
 }

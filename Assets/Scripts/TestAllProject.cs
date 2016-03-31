@@ -50,13 +50,13 @@ public class TestAllProject : MonoBehaviour {
     ICursorBehaviour cursorBehaviour;
     public GameObject objectHandlerCursor;
 
-    FieldObjectsBuilder fieldObjectsBuilder;
+    FieldObjects fieldObjectsBuilder;
 
     public GameObject objectFieldObjectsBuilder;
     void Start ()
     {
         this.cursorBehaviour = objectHandlerCursor.GetComponent<CursorBehaviour>();
-        this.fieldObjectsBuilder = objectFieldObjectsBuilder.GetComponent<FieldObjectsBuilder>();
+        this.fieldObjectsBuilder = objectFieldObjectsBuilder.GetComponent<FieldObjects>();
     }
 
  ArrayList list = new ArrayList();
