@@ -5,7 +5,7 @@ public class HandlerOnMouseActions : MonoBehaviour, IHandlerOnMouseActions
 {
     public event OnMouseActionHandler OnMouseEnterEvent;
     public event OnMouseActionHandler OnMouseExitEvent;
-    public event OnMouseActionHandler OnMouseOverEvent;
+    public event OnMouseActionHandler OnMouseOverEvent; 
 
     private Transform cachTransform;
 
@@ -17,30 +17,31 @@ public class HandlerOnMouseActions : MonoBehaviour, IHandlerOnMouseActions
     private void OnMouseEnter()
     {
         if (this.OnMouseEnterEvent != null)
-            OnMouseEnterEvent(this.cachTransform.position);
+            OnMouseEnterEvent( );
+         
          
     }
     private void OnMouseExit()
     {
         if (this.OnMouseExitEvent != null)
-            OnMouseExitEvent(this.cachTransform.position); 
+            OnMouseExitEvent( ); 
     }
 
 
     private void OnMouseOver()
     {
         if (this.OnMouseOverEvent != null)
-            OnMouseOverEvent(this.cachTransform.position);         
+            OnMouseOverEvent( );         
     }  
 
 }
 
-public delegate void OnMouseActionHandler(Vector3 Positon); 
-
+public delegate void OnMouseActionHandler( ); 
 public interface IHandlerOnMouseActions
 {
     event OnMouseActionHandler OnMouseOverEvent;
     event OnMouseActionHandler OnMouseExitEvent;
     event OnMouseActionHandler OnMouseEnterEvent;
+     
 }
 
