@@ -1,38 +1,42 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-public class CubeBehaviour : MonoBehaviour , ICubeBehaviour
+using System.Collections.Generic;
+public class CubeBehaviour : MonoBehaviour, ICubeBehaviour
 {
-   public float MetamorphosesSpeed { get; set; }
-    
-    private Transform cachTransform;
+  
+    public float SpeedOfRise { get; set; }   
+    public float SpeedOfExpansion { get; set; }
+    public Vector2 PositionInField { set; get; }
+    public List<ICubeBehaviour> Neighbors { get; set; }
 
-    private void Start ()
+    private Transform cachTransform;
+    
+
+    private void Start()
     {
-        // defoult value
-        MetamorphosesSpeed = 15;
+        this.Neighbors = new List<ICubeBehaviour>();
         this.cachTransform = this.GetComponent<Transform>();
     }
 
-    public void Expansion(float v)
-    { 
+    public void Expansion(float height)
+    {
         StopCoroutine(this.CoroutineConstriction());
-        StartCoroutine(this.CoroutineExpansion(v));
+        StartCoroutine(this.CoroutineExpansion(height));
     }
 
     private IEnumerator CoroutineExpansion(float v)
     {
         if (transform.localScale.y < v)
         {
-            this.cachTransform.localScale += new Vector3(0, Time.deltaTime * MetamorphosesSpeed, 0);
-            this.cachTransform.Translate(new Vector3(0, (MetamorphosesSpeed / 2 * Time.deltaTime), 0));
+            this.cachTransform.localScale += new Vector3(0, Time.deltaTime * SpeedOfRise, 0);
+            this.cachTransform.Translate(new Vector3(0, (SpeedOfRise / 2 * Time.deltaTime), 0));
             yield return null;
         }
 
     }
 
     public void Constriction()
-    { 
+    {
         StopCoroutine(this.CoroutineExpansion(0));
         StartCoroutine(CoroutineConstriction());
     }
@@ -40,8 +44,8 @@ public class CubeBehaviour : MonoBehaviour , ICubeBehaviour
     {
         while (transform.localScale.y > 1)
         {
-            this.cachTransform.localScale -= new Vector3(0, Time.deltaTime * MetamorphosesSpeed, 0);
-            this.cachTransform.Translate(new Vector3(0, (-MetamorphosesSpeed / 2 * Time.deltaTime), 0));
+            this.cachTransform.localScale -= new Vector3(0, Time.deltaTime * SpeedOfRise, 0);
+            this.cachTransform.Translate(new Vector3(0, (-SpeedOfRise / 2 * Time.deltaTime), 0));
             yield return null;
         }
     }
@@ -49,13 +53,9 @@ public class CubeBehaviour : MonoBehaviour , ICubeBehaviour
 
 public interface ICubeBehaviour
 {
-    float MetamorphosesSpeed { get; set; }
+    float SpeedOfRise { get; set; }
     void Expansion(float Height);
     void Constriction();
 }
+ 
 
-public struct Point
-{
-    public Vector3 PositionInFieldMatrix { get; set; }
-    public int 
-}
